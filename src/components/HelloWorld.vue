@@ -3,7 +3,25 @@ import { ref } from "vue";
 
 defineProps<{ msg: string }>();
 
-const count = ref(0);
+const mmol = ref("");
+const mgdl = ref("");
+
+const handleMmolEvent = () => {
+  mgdl.value = (18.0182 * Number(mmol.value)).toFixed(3);
+}
+
+const handlemgDlEvent = () => {
+  mmol.value = (Number(mgdl.value) / 18.0182).toFixed(3);
+}
+
+function onlyNumber ($event) {
+   //console.log($event.keyCode); //keyCodes value
+   let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+   if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
+      $event.preventDefault();
+   }
+}
+
 </script>
 
 <template>
@@ -12,14 +30,14 @@ const count = ref(0);
     <div class="converter-container">
       <div class="converter-input-container">
         <label htmlFor="mmol">Blood sugar level in mmol/l</label>
-        <input class="input-element" id="mmol" />
+        <input class="input-element" id="mmol" v-model="mmol" @input="handleMmolEvent()" @keypress="onlyNumber"/>
       </div>
 
       =
 
       <div class="converter-input-container">
         <label htmlFor="mgdl">Blood sugar level in mg/dl</label>
-        <input class="input-element" id="mgdl" />
+        <input class="input-element" id="mgdl" v-model="mgdl" @input="handlemgDlEvent()" @keypress="onlyNumber"/>
       </div>
     </div>
   </div>

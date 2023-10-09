@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Converter from './components/Converter.vue'
 </script>
 
 <template>
   <div>
-    <HelloWorld msg="Vite + Vue" />
+    <Converter />
   </div>
 </template>
 

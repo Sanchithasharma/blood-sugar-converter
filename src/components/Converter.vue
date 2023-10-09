@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-defineProps<{ msg: string }>();
-
 const mmol = ref("");
 const mgdl = ref("");
 
@@ -14,7 +12,7 @@ const handlemgDlEvent = () => {
   mmol.value = (Number(mgdl.value) / 18.0182).toFixed(3);
 }
 
-function onlyNumber ($event) {
+const onlyNumber = ($event) => {
    //console.log($event.keyCode); //keyCodes value
    let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
    if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
